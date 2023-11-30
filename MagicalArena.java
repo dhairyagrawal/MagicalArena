@@ -1,55 +1,102 @@
-// MagicalArena.java
-public class MagicalArena {
-    private Player playerA;
-    private Player playerB;
+import java.util.Scanner;
 
-    // Constructor to initialize players
-    public MagicalArena(Player playerA, Player playerB) {
-        this.playerA = playerA;
-        this.playerB = playerB;
+public class MagicalArena {
+    private Player player1;
+    private Player player2;
+    private Dice dice;
+
+    public MagicalArena() {
         this.dice = new Dice();
     }
 
-    // Method to simulate the game loop
+    public void initializePlayers() {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Enter Player 1 name:");
+        String player1Name = scanner.nextLine();
+        System.out.println("Enter Player 1 health:");
+        int player1Health = scanner.nextInt();
+        scanner.nextLine(); // Consume the newline character
+
+        System.out.println("Enter Player 2 name:");
+        String player2Name = scanner.nextLine();
+        System.out.println("Enter Player 2 health:");
+        int player2Health = scanner.nextInt();
+
+        player1 = new Player(player1Name, player1Health, 5, 10);
+        player2 = new Player(player2Name, player2Health, 10, 5);
+    }
+
     public void playGame() {
-        while (playerA.isAlive() && playerB.isAlive()) {
-            // Alternate between players
-            playerAttack(playerA, playerB);
-            if (playerB.isAlive()) {
-                playerAttack(playerB, playerA);
+        Scanner scanner = new Scanner(System.in);
+
+        while (player1.isAlive() && player2.isAlive()) {
+            printPlayers();
+            printGameStatus();
+
+            // Player 1's turn
+            playerTurn(player1, player2, scanner);
+
+            // Check if Player 2 is still alive before their turn
+            if (player2.isAlive()) {
+                printPlayers();
+                printGameStatus();
+
+                // Player 2's turn
+                playerTurn(player2, player1, scanner);
             }
         }
 
-        // Print the winner
-        if (playerA.isAlive()) {
-            System.out.println("Player A wins!");
+        scanner.close();
+        printGameResult();
+    }
+
+    private void printPlayers() {
+        System.out.println(player1.getName() + " - Health: " + player1.getHealth());
+        System.out.println(player2.getName() + " - Health: " + player2.getHealth());
+        System.out.println("---------------");
+    }
+
+    private void printGameStatus() {
+        System.out.println("Game Status:");
+        System.out.println("---------------");
+    }
+
+    private void playerTurn(Player attacker, Player defender, Scanner scanner) {
+        System.out.println(attacker.getName() + "'s turn.");
+        System.out.println("Press Enter to roll the dice.");
+        scanner.nextLine();
+
+        int diceRoll = dice.roll();
+        int damage = attacker.calculateDamage();
+
+        System.out.println(attacker.getName() + " rolled a " + diceRoll + " on the dice.");
+        System.out.println("Attack damage: " + damage);
+
+        int defense = defender.getStrength() * dice.roll();
+        int netDamage = Math.max(0, damage - defense);
+
+        System.out.println(defender.getName() + " rolled a " + diceRoll + " on the defense dice.");
+        System.out.println(defender.getName() + "'s defense: " + defense);
+        System.out.println(attacker.getName() + "'s net damage: " + netDamage);
+
+        defender.receiveDamage(netDamage);
+    }
+
+    private void printGameResult() {
+        System.out.println("---------------");
+        if (!player1.isAlive() && !player2.isAlive()) {
+            System.out.println("It's a tie!");
+        } else if (!player1.isAlive()) {
+            System.out.println(player2.getName() + " wins!");
         } else {
-            System.out.println("Player B wins!");
+            System.out.println(player1.getName() + " wins!");
         }
     }
 
-    // Method to handle the attack phase
-    private void playerAttack(Player attacker, Player defender) {
-        int damage = attacker.calculateDamage();
-        int defense = defender.getStrength() * rollDice();
-
-        int netDamage = Math.max(0, damage - defense); // Ensure damage doesn't go below 0
-        defender.receiveDamage(netDamage);
-
-        System.out.println(attacker + " attacks " + defender + " with damage: " + netDamage);
-        System.out.println("Player A Health: " + playerA.getHealth() + ", Player B Health: " + playerB.getHealth());
-    }
-
-    private int rollDice() {
-        return dice.roll();
-    }
-
     public static void main(String[] args) {
-        // Example usage
-        Player playerA = new Player(50, 5, 10);
-        Player playerB = new Player(100, 10, 5);
-
-        MagicalArena arena = new MagicalArena(playerA, playerB);
+        MagicalArena arena = new MagicalArena();
+        arena.initializePlayers();
         arena.playGame();
     }
 }

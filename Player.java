@@ -1,19 +1,23 @@
 // Player.java
-import java.util.Random;
-
 public class Player {
+    private String name;
     private int health;
     private int strength;
     private int attack;
+    private Dice dice;
 
-    // Constructor to initialize player attributes
-    public Player(int health, int strength, int attack) {
+    public Player(String name, int health, int strength, int attack) {
+        this.name = name;
         this.health = health;
         this.strength = strength;
         this.attack = attack;
+        this.dice = new Dice();
     }
 
-    // Getter methods
+    public String getName() {
+        return name;
+    }
+
     public int getHealth() {
         return health;
     }
@@ -22,36 +26,21 @@ public class Player {
         return strength;
     }
 
-    public int getAttack() {
-        return attack;
-    }
-
-    // Method to check if the player is alive
-    public boolean isAlive() {
-        return health > 0;
-    }
-
-    private final Dice dice;
-
-    // Constructor to initialize player attributes and dice
-    public Player(int health, int strength, int attack) {
-        this.health = health;
-        this.strength = strength;
-        this.attack = attack;
-        this.dice = new Dice();
-    }
-
-    // Method to calculate damage inflicted by the player
     public int calculateDamage() {
         int diceRoll = dice.roll();
         return attack * diceRoll;
     }
 
-    // Method to reduce player health based on the damage received
     public void receiveDamage(int damage) {
-        health -= damage;
-        if (health < 0) {
-            health = 0; // Ensure health doesn't go below 0
-        }
+        health = Math.max(0, health - damage);
+    }
+
+    public boolean isAlive() {
+        return health > 0;
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
