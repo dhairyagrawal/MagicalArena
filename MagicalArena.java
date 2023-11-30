@@ -99,4 +99,24 @@ public class MagicalArena {
         arena.initializePlayers();
         arena.playGame();
     }
+
+    public String displayGameStatus() {
+        StringBuilder status = new StringBuilder();
+        status.append("Game Status:\n");
+        status.append("---------------\n");
+        status.append("Player 1: ").append(player1.getName()).append(" - Health: ").append(player1.getHealth()).append("\n");
+        status.append("Player 2: ").append(player2.getName()).append(" - Health: ").append(player2.getHealth()).append("\n");
+        status.append("---------------\n");
+        return status.toString();
+    }
+
+    public String getGameResult() {
+        if (!player1.isAlive() && !player2.isAlive()) {
+            return "It's a tie!";
+        } else if (!player1.isAlive()) {
+            return player2.getName() + " wins!";
+        } else {
+            return player1.getName() + " wins!";
+        }
+    }
 }
