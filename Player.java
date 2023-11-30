@@ -31,10 +31,19 @@ public class Player {
         return health > 0;
     }
 
+    private final Dice dice;
+
+    // Constructor to initialize player attributes and dice
+    public Player(int health, int strength, int attack) {
+        this.health = health;
+        this.strength = strength;
+        this.attack = attack;
+        this.dice = new Dice();
+    }
+
     // Method to calculate damage inflicted by the player
     public int calculateDamage() {
-        Random rand = new Random();
-        int diceRoll = rand.nextInt(6) + 1; // Simulate a 6-sided die roll
+        int diceRoll = dice.roll();
         return attack * diceRoll;
     }
 

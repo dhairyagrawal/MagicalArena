@@ -7,6 +7,7 @@ public class MagicalArena {
     public MagicalArena(Player playerA, Player playerB) {
         this.playerA = playerA;
         this.playerB = playerB;
+        this.dice = new Dice();
     }
 
     // Method to simulate the game loop
@@ -39,9 +40,8 @@ public class MagicalArena {
         System.out.println("Player A Health: " + playerA.getHealth() + ", Player B Health: " + playerB.getHealth());
     }
 
-    // Method to simulate rolling a 6-sided die
     private int rollDice() {
-        return (int) (Math.random() * 6) + 1;
+        return dice.roll();
     }
 
     public static void main(String[] args) {
