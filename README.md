@@ -20,3 +20,46 @@ Welcome to the MagicalArena, a simple console-based game where two players engag
    ```bash
    git clone https://github.com/your-username/magical-arena.git
    cd magical-arena
+
+2. ** Compile and Run:
+
+   Open a terminal or command prompt and execute the following commands:
+   ```bash
+   javac MagicalArena.java
+   java MagicalArena
+   Follow On-screen Instructions:
+
+Enter Player 1's name and health when prompted.
+Enter Player 2's name and health when prompted.
+The game will proceed with turns and display the results until one player wins or it's a tie.
+Enjoy the Game!
+
+Have fun playing the MagicalArena game!
+
+## Game Rules
+Players take turns attacking and defending.
+Each player rolls a six-sided die for their attack and defense.
+Damage is calculated based on the attack value, die roll, and opponent's defense.
+The game ends when one player's health reaches 0.
+
+## Sample Gameplay
+   ```bash
+   Enter Player 1 name: Alice
+   Enter Player 1 health: 50
+   
+   Enter Player 2 name: Bob
+   Enter Player 2 health: 50
+   
+   ...
+   
+   Player 1: Alice - Health: 30
+   Player 2: Bob - Health: 20
+   ---------------
+   
+   ...
+   
+   Player 1: Alice - Health: 0
+   Player 2: Bob - Health: 10
+   ---------------
+   
+   Bob wins!
