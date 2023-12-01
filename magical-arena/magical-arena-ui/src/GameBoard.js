@@ -50,7 +50,7 @@ function GameBoard() {
   };
 
   const player2 = {
-    name: "Richa",
+    name: "Dhairy2",
     health: 90,
     maxHealth: 100,
   };
