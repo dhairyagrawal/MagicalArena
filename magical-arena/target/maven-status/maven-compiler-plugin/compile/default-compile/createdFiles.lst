@@ -1,0 +1,8 @@
+com/magicalarena/controller/GameController.class
+com/magicalarena/controller/GreetingsController.class
+com/magicalarena/App.class
+com/magicalarena/MagicalArenaApplication.class
+com/magicalarena/MagicalArena.class
+com/magicalarena/Player.class
+com/magicalarena/Dice.class
+com/magicalarena/PlayerInitializationRequest.class
