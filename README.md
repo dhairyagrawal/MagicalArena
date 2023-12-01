@@ -37,10 +37,10 @@ Enjoy the Game!
 Have fun playing the MagicalArena game!
 
 ## Game Rules
-Players take turns attacking and defending.
-Each player rolls a six-sided die for their attack and defense.
-Damage is calculated based on the attack value, die roll, and opponent's defense.
-The game ends when one player's health reaches 0.
+Players take turns attacking and defending.<br> 
+Each player rolls a six-sided die for their attack and defense.<br> 
+Damage is calculated based on the attack value, die roll, and opponent's defense.<br> 
+The game ends when one player's health reaches 0.<br> 
 
 ## Sample Gameplay
    ```bash
@@ -63,3 +63,23 @@ The game ends when one player's health reaches 0.
    ---------------
    
    Bob wins!
+   ```
+## Bonus
+I have created a maven spring boot application for exposing the game via API and created a basic REACT App for the same, it is not complete but can check out.<br> 
+
+## How to Run
+To run the maven react app
+   Open a terminal or command prompt and execute the following commands:
+   ```bash
+   cd magical-arena
+   mvn clean install
+   mvn spring-boot:run
+   ```
+   Open another terminal or command prompt parallely and execute the following commands:
+   ```bash
+   cd magical-arena-ui
+   npm install
+   npm start
+   ```
+
+Check out the frontend.
