@@ -1,3 +1,4 @@
+package com.magicalarena;
 import java.util.Scanner;
 
 public class MagicalArena {
