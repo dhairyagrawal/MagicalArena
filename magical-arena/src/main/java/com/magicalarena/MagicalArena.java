@@ -53,10 +53,11 @@ public class MagicalArena {
         printGameResult();
     }
 
-    private void printPlayers() {
+    public String printPlayers() {
         System.out.println(player1.getName() + " - Health: " + player1.getHealth());
         System.out.println(player2.getName() + " - Health: " + player2.getHealth());
         System.out.println("---------------");
+        return player1.getName() + " - Health: " + player1.getHealth() + player2.getName() + " - Health: " + player2.getHealth();
     }
 
     private void printGameStatus() {

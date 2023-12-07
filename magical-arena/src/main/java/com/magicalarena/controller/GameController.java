@@ -31,4 +31,9 @@ public class GameController {
     public String getGameStatus() {
         return magicalArena.getGameStatus();
     }
+
+    @GetMapping("/players-info")
+    public String getPlayersInfo() {
+        return magicalArena.printPlayers();
+    }
 }
