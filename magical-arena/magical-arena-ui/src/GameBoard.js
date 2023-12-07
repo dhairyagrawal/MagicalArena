@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import PlayerInfo from "./PlayerInfo";
 import axiosInstance from "./AxiosInstance";
 import GameSummary from "./GameSummary";
@@ -29,6 +29,21 @@ const diceButtonStyle = {
 
 function GameBoard() {
   const [gameStatus, setGameStatus] = useState(null);
+
+  useEffect(() => {
+    axiosInstance
+      .get("api/magical-arena/players-info")
+      .then((response) => {
+        // Handle success if needed
+        console.log(response.data);
+        // setGameStatus(response.data); // Update game status in the state
+      })
+      .catch((error) => {
+        // Handle error if needed
+        console.error(error);
+      });
+  }, []); 
+
   const rollDice = () => {
     console.log("test");
     axiosInstance

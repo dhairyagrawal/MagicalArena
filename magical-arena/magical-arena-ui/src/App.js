@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import './App.css';
 import GameBoard from './GameBoard';
+import PlayerInitialization from './PlayerInitialization';
 
 const appStyle = {
   display: 'flex',
@@ -12,9 +14,14 @@ const appStyle = {
 };
 
 function App() {
+  const [startGame, setStartGame] = useState(false);
   return (
     <div className="App" style={appStyle}>
-      <GameBoard/>
+      {startGame ? (
+        <GameBoard />
+      ) : (
+        <PlayerInitialization gameInitialized={setStartGame}/>
+      )}
     </div>
   );
 }
